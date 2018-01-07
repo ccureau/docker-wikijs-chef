@@ -31,15 +31,15 @@ default['wikijs']['features']['linebreaks'] = ENV['FEATURE_LINEBREAKS'] || true
 
 ## External Logging
 # TODO: Make sure all options are included
-node['wikijs']['extlog']['bugsnag']['enabled']     = ENV['LOG_BUGSNAG'] || false
-node['wikijs']['extlog']['loggly']['enabled']      = ENV['LOG_LOGGLY'] || false
-node['wikijs']['extlog']['loggly']['token']        = ENV['LOGGLY_TOKEN']
-node['wikijs']['extlog']['loggly']['subdomain']    = ENV['LOGGLY_SUBDOMAIN']
-node['wikijs']['extlog']['papertrail']['enabled']  = ENV['LOG_PAPERTRAIL'] || false
-node['wikijs']['extlog']['papertrail']['host']     = ENV['PAPERTRAIL_HOST']
-node['wikijs']['extlog']['papertrail']['port']     = ENV['PAPERTRAIL_PORT']
-node['wikijs']['extlog']['rollbar']['enabled']     = ENV['LOG_ROLLBAR'] || false
-node['wikijs']['extlog']['sentry']['enabled']      = ENV['LOG_SENTRY'] || false
+default['wikijs']['extlog']['bugsnag']['enabled']     = ENV['LOG_BUGSNAG'] || false
+default['wikijs']['extlog']['loggly']['enabled']      = ENV['LOG_LOGGLY'] || false
+default['wikijs']['extlog']['loggly']['token']        = ENV['LOGGLY_TOKEN']
+default['wikijs']['extlog']['loggly']['subdomain']    = ENV['LOGGLY_SUBDOMAIN']
+default['wikijs']['extlog']['papertrail']['enabled']  = ENV['LOG_PAPERTRAIL'] || false
+default['wikijs']['extlog']['papertrail']['host']     = ENV['PAPERTRAIL_HOST']
+default['wikijs']['extlog']['papertrail']['port']     = ENV['PAPERTRAIL_PORT']
+default['wikijs']['extlog']['rollbar']['enabled']     = ENV['LOG_ROLLBAR'] || false
+default['wikijs']['extlog']['sentry']['enabled']      = ENV['LOG_SENTRY'] || false
 
 ## Should the wiki be accessible publicly without a login?
 default['wikijs']['isPublic'] = ENV['PUBLIC'] || false
