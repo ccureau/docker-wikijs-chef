@@ -1,0 +1,10 @@
+[program:wikijs]
+command = node server
+autostart=true
+autorestart=true
+priority=5
+directory=<%= node['wikijs']['installDir'] %>
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=10247680
+stderr_logfile=/dev/stdout
+stderr_logfile_maxbytes=10247680

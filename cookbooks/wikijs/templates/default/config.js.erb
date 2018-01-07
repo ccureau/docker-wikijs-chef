@@ -1,0 +1,204 @@
+#######################################################################
+# Wiki.js - CONFIGURATION                                             #
+#######################################################################
+# Full explanation + examples in the documentation:
+# https://docs.requarks.io/wiki/install
+# You can use an ENV variable by using $(ENV_VAR_NAME) as the value
+
+# ---------------------------------------------------------------------
+# Title of this site
+# ---------------------------------------------------------------------
+
+title: <%= node['wikijs']['title'] %>
+
+# ---------------------------------------------------------------------
+# Full public path to the site, without the trailing slash
+# ---------------------------------------------------------------------
+# INCLUDE CLIENT PORT IF NOT 80/443!
+
+host: <%= node['wikijs']['host'] %>
+
+# ---------------------------------------------------------------------
+# Port the main server should listen to (80 by default)
+# ---------------------------------------------------------------------
+# To use process.env.PORT, comment the line below:
+
+port: <%= node['wikijs']['port'] %>
+
+# ---------------------------------------------------------------------
+# Data Directories
+# ---------------------------------------------------------------------
+
+paths:
+  repo: ./repo
+  data: ./data
+
+# ---------------------------------------------------------------------
+# Upload Limits
+# ---------------------------------------------------------------------
+# In megabytes (MB)
+
+uploads:
+  maxImageFileSize: <%= node['wikijs']['maxImageSize'] %>
+  maxOtherFileSize: <%= node['wikijs']['maxFileSize'] %>
+
+# ---------------------------------------------------------------------
+# Site Language
+# ---------------------------------------------------------------------
+# Possible values: en, de, es, fa, fr, ja, ko, nl, pt, ru, sr, sv, tr or zh
+
+lang: <%= node['wikijs']['lang'] %>
+
+# Enable for right to left languages (e.g. arabic):
+langRtl: <%= node['wikijs']['langRtl'] %>
+
+# ---------------------------------------------------------------------
+# Site Authentication
+# ---------------------------------------------------------------------
+
+public: <%= node['wikijs']['isPublic'] %>
+
+auth:
+  defaultReadAccess: <%= node['wikijs']['auth_local']['readOnly'] %>
+  local:
+    enabled: <%= node['wikijs']['auth_local']['enabled'] %>
+  google:
+    enabled: <%= node['wikijs']['auth_google']['enabled'] %>
+    <% if node['wikijs']['auth_google']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_google']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_google']['clientSecret'] %>
+    <% end %>
+  microsoft:
+    enabled: <%= node['wikijs']['auth_microsoft']['enabled'] %>
+    <% if node['wikijs']['auth_microsoft']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_microsoft']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_microsoft']['clientSecret'] %>
+    <% end %>
+  facebook:
+    enabled: <%= node['wikijs']['auth_facebook']['enabled'] %>
+    <% if node['wikijs']['auth_facebook']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_facebook']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_facebook']['clientSecret'] %>
+    <% end %>
+  github:
+    enabled: <%= node['wikijs']['auth_github']['enabled'] %>
+    <% if node['wikijs']['auth_github']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_github']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_github']['clientSecret'] %>
+    <% end %>
+  slack:
+    enabled: <%= node['wikijs']['auth_slack']['enabled'] %>
+    <% if node['wikijs']['auth_slack']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_slack']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_slack']['clientSecret'] %>
+    <% end %>
+  ldap:
+    enabled: <%= node['wikijs']['auth_ldap']['enabled'] %>
+    <% if node['wikijs']['auth_ldap']['enabled'] %>
+    url: <%= node['wikijs']['auth_ldap']['url'] %>
+    bindDn: <%= node['wikijs']['auth_ldap']['bindDn'] %>
+    bindCredentials: <%= node['wikijs']['auth_ldap']['bindCreds'] %>
+    searchBase: <%= node['wikijs']['auth_ldap']['searchBase'] %>
+    searchFilter: <%= node['wikijs']['auth_ldap']['searchFilter'] %>
+    tlsEnabled: <%= node['wikijs']['auth_ldap']['tls'] %>
+    tlsCertPath: <%= node['wikijs']['auth_ldap']['tlsCertPath'] %>
+    <% end %>
+  azure:
+    enabled: <%= node['wikijs']['auth_azure']['enabled'] %>
+    <% if node['wikijs']['auth_azure']['enabled'] %>
+    clientId: <%= node['wikijs']['auth_azure']['clientId'] %>
+    clientSecret: <%= node['wikijs']['auth_azure']['clientSecret'] %>
+    resource: <%= node['wikijs']['auth_azure']['resource'] %>
+    tenant: <%= node['wikijs']['auth_azure']['tenant'] %>
+    <% end %>
+
+# ---------------------------------------------------------------------
+# Secret key to use when encrypting sessions
+# ---------------------------------------------------------------------
+# Use a long and unique random string (256-bit keys are perfect!)
+
+sessionSecret: <%= node['wikijs']['sessionSecret'] %>
+
+# ---------------------------------------------------------------------
+# Database Connection String
+# ---------------------------------------------------------------------
+
+<% if node['wikijs']['mongo']['user'] && node['wikijs']['mongo']['password'] %>
+db: mongodb://<%= node['wikijs']['mongo']['user'] %>:<%= node['wikijs']['mongo']['password'] %>@<%= node['wikijs']['mongo']['host'] %>:<%= node['wikijs']['mongo']['port'] %>/<%= node['wikijs']['mongo']['database'] %>
+<% else %>
+db: mongodb://<%= node['wikijs']['mongo']['host'] %>:<%= node['wikijs']['mongo']['port'] %>/<%= node['wikijs']['mongo']['database'] %>
+<% end %>
+
+# ---------------------------------------------------------------------
+# Git Connection Info
+# ---------------------------------------------------------------------
+
+git:
+  enabled: <% node['wikijs']['github']['enabled'] %>
+  <% if node['wikijs']['github']['enabled'] %>
+  url: <%= node['wikijs']['github']['url'] %>
+  branch: <%= node['wikijs']['github']['branch'] %>
+  auth:
+
+
+    # Type: basic or ssh
+    type: <%= node['wikijs']['github']['authType'] %>
+
+    <% if node['wikijs']['github']['authType'].equals('basic') %>
+    username: <%= node['wikijs']['github']['username'] %>
+    password: <%= node['wikijs']['github']['password'] %>
+    <% end %>
+
+    <% if node['wikijs']['github']['authType'].equals('ssh') %>
+    privateKey: <%= node['wikijs']['github']['privateKey'] %>
+    <% end %>
+
+    sslVerify: <%= node['wikijs']['github']['sslVerify'] %>
+
+  # Default email to use as commit author
+  serverEmail: <%= node['wikijs']['github']['serverEmail'] %>
+
+  # Whether to use user email as author in commits
+  showUserEmail: <%= node['wikijs']['github']['showUserEmail'] %>
+  <% end %>
+
+# ---------------------------------------------------------------------
+# Features
+# ---------------------------------------------------------------------
+# You can enable / disable specific features below
+
+features:
+  linebreaks: <%= default['wikijs']['features']['linebreaks'] %>
+  mathjax: <%= default['wikijs']['features']['mathjax'] %>
+
+# ---------------------------------------------------------------------
+# External Logging
+# ---------------------------------------------------------------------
+
+externalLogging:
+  bugsnag: <%= node['wikijs']['extlog']['bugsnag']['enabled'] %>
+  loggly: <%= node['wikijs']['extlog']['loggly']['enabled'] %>
+  <% if node['wikijs']['extlog']['loggly']['enabled'] %>
+    token: <%= node['wikijs']['extlog']['loggly']['token'] %>
+    subdomain: <%= node['wikijs']['extlog']['loggly']['enabled'] %>
+  <% end %>
+  papertrail: <%= node['wikijs']['extlog']['papertrail']['enabled'] %>
+  <% if node['wikijs']['extlog']['papertrail']['enabled'] %>
+    host: <%= node['wikijs']['extlog']['papertrail']['host'] %>
+    port: <%= node['wikijs']['extlog']['papertrail']['port'] %>
+  <% end %>
+  rollbar: <%= node['wikijs']['extlog']['rollbar']['enabled'] %>
+  sentry: <%= node['wikijs']['extlog']['sentry']['enabled'] %>
+
+# ---------------------------------------------------------------------
+# Color Theme
+# ---------------------------------------------------------------------
+
+theme:
+  primary: indigo
+  alt: blue-grey
+  viewSource: all # all | write | false
+  footer: blue-grey
+  code:
+    dark: true
+    colorize: true
