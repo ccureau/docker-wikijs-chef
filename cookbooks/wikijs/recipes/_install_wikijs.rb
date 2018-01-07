@@ -12,7 +12,7 @@ end
 # set up directory
 directory node['wikijs']['installDir'] do
   action :create
-  recursive :true
+  recursive true
 end
 
 # set up configuration
