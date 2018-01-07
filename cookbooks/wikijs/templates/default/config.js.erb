@@ -64,37 +64,37 @@ auth:
     enabled: <%= node['wikijs']['auth_local']['enabled'] %>
   google:
     enabled: <%= node['wikijs']['auth_google']['enabled'] %>
-    <% if node['wikijs']['auth_google']['enabled'] %>
+    <% if node['wikijs']['auth_google']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_google']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_google']['clientSecret'] %>
     <% end %>
   microsoft:
     enabled: <%= node['wikijs']['auth_microsoft']['enabled'] %>
-    <% if node['wikijs']['auth_microsoft']['enabled'] %>
+    <% if node['wikijs']['auth_microsoft']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_microsoft']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_microsoft']['clientSecret'] %>
     <% end %>
   facebook:
     enabled: <%= node['wikijs']['auth_facebook']['enabled'] %>
-    <% if node['wikijs']['auth_facebook']['enabled'] %>
+    <% if node['wikijs']['auth_facebook']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_facebook']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_facebook']['clientSecret'] %>
     <% end %>
   github:
     enabled: <%= node['wikijs']['auth_github']['enabled'] %>
-    <% if node['wikijs']['auth_github']['enabled'] %>
+    <% if node['wikijs']['auth_github']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_github']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_github']['clientSecret'] %>
     <% end %>
   slack:
     enabled: <%= node['wikijs']['auth_slack']['enabled'] %>
-    <% if node['wikijs']['auth_slack']['enabled'] %>
+    <% if node['wikijs']['auth_slack']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_slack']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_slack']['clientSecret'] %>
     <% end %>
   ldap:
     enabled: <%= node['wikijs']['auth_ldap']['enabled'] %>
-    <% if node['wikijs']['auth_ldap']['enabled'] %>
+    <% if node['wikijs']['auth_ldap']['enabled'].eql?('true') %>
     url: <%= node['wikijs']['auth_ldap']['url'] %>
     bindDn: <%= node['wikijs']['auth_ldap']['bindDn'] %>
     bindCredentials: <%= node['wikijs']['auth_ldap']['bindCreds'] %>
@@ -105,7 +105,7 @@ auth:
     <% end %>
   azure:
     enabled: <%= node['wikijs']['auth_azure']['enabled'] %>
-    <% if node['wikijs']['auth_azure']['enabled'] %>
+    <% if node['wikijs']['auth_azure']['enabled'].eql?('true') %>
     clientId: <%= node['wikijs']['auth_azure']['clientId'] %>
     clientSecret: <%= node['wikijs']['auth_azure']['clientSecret'] %>
     resource: <%= node['wikijs']['auth_azure']['resource'] %>
@@ -135,7 +135,7 @@ db: mongodb://<%= node['wikijs']['mongo']['host'] %>:<%= node['wikijs']['mongo']
 
 git:
   enabled: <% node['wikijs']['github']['enabled'] %>
-  <% if node['wikijs']['github']['enabled'] %>
+  <% if node['wikijs']['github']['enabled'].eql?('true') %>
   url: <%= node['wikijs']['github']['url'] %>
   branch: <%= node['wikijs']['github']['branch'] %>
   auth:
@@ -178,12 +178,12 @@ features:
 externalLogging:
   bugsnag: <%= node['wikijs']['extlog']['bugsnag']['enabled'] %>
   loggly: <%= node['wikijs']['extlog']['loggly']['enabled'] %>
-  <% if node['wikijs']['extlog']['loggly']['enabled'] %>
+  <% if node['wikijs']['extlog']['loggly']['enabled'].eql?('true') %>
     token: <%= node['wikijs']['extlog']['loggly']['token'] %>
     subdomain: <%= node['wikijs']['extlog']['loggly']['enabled'] %>
   <% end %>
   papertrail: <%= node['wikijs']['extlog']['papertrail']['enabled'] %>
-  <% if node['wikijs']['extlog']['papertrail']['enabled'] %>
+  <% if node['wikijs']['extlog']['papertrail']['enabled'.eql?('true')] %>
     host: <%= node['wikijs']['extlog']['papertrail']['host'] %>
     port: <%= node['wikijs']['extlog']['papertrail']['port'] %>
   <% end %>
