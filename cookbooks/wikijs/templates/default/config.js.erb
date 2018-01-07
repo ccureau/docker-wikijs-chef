@@ -144,12 +144,12 @@ git:
     # Type: basic or ssh
     type: <%= node['wikijs']['github']['authType'] %>
 
-    <% if node['wikijs']['github']['authType'].equals('basic') %>
+    <% if node['wikijs']['github']['authType'].eql?('basic') %>
     username: <%= node['wikijs']['github']['username'] %>
     password: <%= node['wikijs']['github']['password'] %>
     <% end %>
 
-    <% if node['wikijs']['github']['authType'].equals('ssh') %>
+    <% if node['wikijs']['github']['authType'].eql?('ssh') %>
     privateKey: <%= node['wikijs']['github']['privateKey'] %>
     <% end %>
 
