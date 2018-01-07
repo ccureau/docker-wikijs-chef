@@ -12,7 +12,7 @@ default['wikijs']['sessionSecret'] = Array.new(16) { rand(256) }.pack('C*').unpa
 ## Database configuration
 default['wikijs']['mongo']['host']      = ENV['MONGO_HOST']
 default['wikijs']['mongo']['port']      = ENV['MONGO_PORT'] || 27017
-default['wilijs']['mongo']['database']  = ENV['MONGO_DBNAME'] || 'wikijs'
+default['wikijs']['mongo']['database']  = ENV['MONGO_DBNAME'] || 'wikijs'
 default['wikijs']['mongo']['user']      = ENV['MONGO_USER']
 default['wikijs']['mongo']['password']  = ENV['MONGO_PASSWORD']
 
