@@ -11,9 +11,9 @@ directory node['wikijs']['installDir'] do
 end
 
 # install wikijs
-execute 'install wiki.js using npm' do
+execute 'install wiki.js' do
   cwd node['wikijs']['installDir']
-  command 'npm install wiki.js@latest'
+  command 'curl -sSo- https://wiki.js.org/install.sh | bash'
 end
 
 # set up configuration
