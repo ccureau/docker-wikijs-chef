@@ -17,7 +17,7 @@ execute 'install wiki.js' do
 end
 
 # set up configuration
-template "#{node['wikijs']['installDir']}/config.js" do
-  source 'config.js.erb'
+template "#{node['wikijs']['installDir']}/config.yml" do
+  source 'config.yml.erb'
   mode 0600
 end
