@@ -56,7 +56,7 @@ default['wikijs']['auth_google']['clientId']     = ENV['AUTH_GOOGLE_CLIENT_ID']
 default['wikijs']['auth_google']['clientSecret'] = ENV['AUTH_GOOGLE_SECRET']
 
 # Microsoft Authentication
-default['wikijs']['auth_microsoft']              = ENV['AUTH_MICROSOFT'] || 'false'
+default['wikijs']['auth_microsoft']['enabled']   = ENV['AUTH_MICROSOFT'] || 'false'
 default['wikijs']['auth_microsoft_clientId']     = ENV['AUTH_MICROSOFT_CLIENT_ID']
 default['wikijs']['auth_microsoft_clientSecret'] = ENV['AUTH_MICROSOFT_SECRET']
 
