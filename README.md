@@ -1,1 +1,1 @@
-# docker-wikijs-chef
+# wikijs-docker-chef
